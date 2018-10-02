@@ -18,3 +18,5 @@ cercare un utente, inviare una richiesta di amicizia per chattare e cosa più fo
 L'app è in continuo aggiornamento, per visitare il repository github: https://github.com/MarcoTregnaghi/chat/tree/chat_branch
 
 Author: Tregnaghi Marco.
+
+https://github.com/MarcoTregnaghi/Marconi-Hub.git
