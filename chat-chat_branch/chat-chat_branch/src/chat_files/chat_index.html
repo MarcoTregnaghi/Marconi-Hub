@@ -2,13 +2,8 @@
 <html>
 <head>
   <title>Ideas Hub</title>
-
-  
 </head>
 <body>
-  
-  <input id = "testHash">
-  <button id="sendpw">========</button>
   <div class="container mt-3" id="testcont">
     <ul class="nav nav-tabs" id="navBar">
       <li class="nav-item">
@@ -23,12 +18,8 @@
       <li class="nav-item">
         <a class="nav-link disabled" id="friendsReqBar" data-toggle="tab" href="#sectionFriendRequest">Friend Request</a>
       </li>
-      <div id="mainInput">
-        <input type="text" id="connectBtn">
-        <button type="button" class="btn btn-primary btn-sm" id="regBtn">connect</button>
-      </div>
     </ul>
-    <button id="signOutBtn">Sign out</button>
+    <button id="signOutBtn" class="btn btn-primary">Sign out</button>
     <br>
     <span>Logged as: </span>
     <span id="loggedAs" style="color: red;"></span>
@@ -55,7 +46,7 @@
         </div>
         <div class="flex-container" id="mainSend">
           <form id="formId" action="">
-            <input class="m" id="sendMessageBtn" autocomplete="off" />
+            <input id="messageField" autocomplete="off" />
             <button type="submit" id="sendButton" class="btn btn-primary">Send</button>
           </form>
         </div>

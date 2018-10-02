@@ -12,82 +12,17 @@ var io = require('socket.io')(http);
 var $ = require('jquery');
 var port = 3000;
 var lastClient = 0;
-var clients = {}; //TODO cambiare in onlineclients
+var clients = {};
 var chats = {};
 var registeredClients = {};
-
 passwords = [];
 
 app.use(express.static(".\\src\\"));
-
-// app.get('/', function (req, res) {
-//     res.sendFile(__dirname + '/index.html');
-//   });
-{
-  //http.use('./',  app.static(__dirname + './'));
-
-  // *************File da mandare al client al collegamento*************
-  // app.get('/', function (req, res) {
-  //   res.sendFile(__dirname + '/index.html');
-  // });
-
-  // app.post('/', function (req, res) {
-  //   res.redirect(__dirname + '/login.html');
-  // });
-
-  // app.get('/script.js', function (req, res) {
-  //   res.sendFile(__dirname + '/script.js');
-  // });
-
-  // app.get('/mainBG.png', function (req, res) {
-  //   res.sendFile(__dirname + '/mainBG.png');
-  // });
-
-  // app.get('/login_style.css', function (req, res) {
-  //   res.sendFile(__dirname + '/login_style.css');
-  // });
-}
-
-// app.get('/style.css', function (req, res) {
-//   res.sendFile(__dirname + '/style.css');
-// });
-// *******************************************************************
 
 io.on('connection', function (socket) {
   socket.on("id-req", function () {
     io.sockets.connected[socket.id].emit("id-resp", socket.id);
   })
-
-  {
-    // socket.on("writejson", function () {
-    //   console.log("ok");
-
-
-    // });
-
-    // socket.on("jsonreq", function (data) {
-    //   fs.writeFileSync('test.json', data);
-
-    //   console.log("im going to read something")
-
-    //   var obj;
-    //   fs.readFile('test.json', 'utf8', function (err, data) {
-    //     if (err) throw err;
-    //     obj = JSON.parse(data);
-    //     console.log(obj)
-    //   });
-
-    // })
-
-    // socket.on("read", function(){
-    //   var obj;
-    //   fs.readFile('test.json', 'utf8', function (err, data) {
-    //     if (err) throw err;
-    //     obj = JSON.parse(data);
-    //     console.log(obj)
-    //   });
-    // })
-  }
 
   socket.on('html-init', function () {
     ret = []
@@ -109,42 +44,6 @@ io.on('connection', function (socket) {
       });
 
     });
-    // fs.readFile(__dirname + '\\login_files\\login_script.js', 'utf8', (err, dataPage) => {
-    //   if (err) throw err;
-    //   ret["js"] = dataPage;
-
-    // });
-
-
-
-  });
-
-
-
-  socket.on('done-login', function (data) {
-
-
-    // app.get('login.html', function (req, res) {
-    //   res.sendFile(__dirname + 'login.html');
-    // });
-
-
-    //   if(data == "go"){
-    //     app.redirect("./login.html");
-    //   }
-    //   if(passwords.length){
-    //     if(bcrypt.compareSync(data, passwords[0])) {
-    //       console.log("match")
-    //      } else {
-    //       console.log("NO match")
-    //      }  
-
-    //     passwords.pop();
-    //   }
-    //   console.log(data);
-    //   let hash = bcrypt.hashSync(data, 10);
-    //   passwords.push(hash);
-    //   console.log(passwords);
   });
 
   io.sockets.connected[socket.id].emit("getN", lastClient);
@@ -231,18 +130,10 @@ io.on('connection', function (socket) {
 
     if (!registeredClients[newUsername]) {
       registeredClients[newUsername] = { "friendReq": { "inBox": [], "sended": [] }, "id": socket.id, "friends": [], "password": null };
-
       let hash = bcrypt.hashSync(newPassword, 10);
-
       registeredClients[newUsername]["password"] = hash;
-
-
     }
-
     console.log("[INFO] " + getTime() + " user succefully registered: " + newUsername + " pw: " + newPassword);
-
-
-
   });
 
   socket.on('registration-login', function (reqName) {  // LOGIN
@@ -258,10 +149,7 @@ io.on('connection', function (socket) {
         console.log("RESULT: " + compare)
         if (compare) {
           newName = reqName[0];
-
-
           clients[reqName[0]] = { "id": socket.id };
-
           var ret = [];
 
           fs.readFile(__dirname + '\\chat_files\\chat_index.html', 'utf8', (err, dataPage) => {
@@ -284,7 +172,7 @@ io.on('connection', function (socket) {
             });
           });
 
-          console.log("[INFO] " + getTime() + " account confirmed: " + reqName[0] + " obj: " + registeredClients[newName])
+          console.log("[INFO] " + getTime() + " account login: " + reqName[0] + " obj: " + registeredClients[newName])
 
           io.sockets.connected[socket.id].emit("login", ["done", clients]); // messaggio mirato (id)
 

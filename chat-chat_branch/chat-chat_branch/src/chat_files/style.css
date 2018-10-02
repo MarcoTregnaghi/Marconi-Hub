@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 /************************************/
 
 html, body {
@@ -174,12 +166,14 @@ form button {
   height: 100%;
 }
 
-/* body {
-  //background: url("..\\assets\\mainBG.png");
-} */
+#mainSend{
+  height: 9%;
+  width: 90%;
 
-.m {
-  width: 75%;
+}
+
+#messageField {
+  width: 80%;
   height: 90%;
   padding: 5px;
 }
@@ -187,7 +181,7 @@ form button {
  #frndSearch {} 
 
 #sendButton {
-  width: 23.9%;
+  width: 15.9%;
 }
 
 #connectBtn {

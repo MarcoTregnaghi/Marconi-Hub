@@ -152,7 +152,6 @@ $("#signOutBtn").on('click', function () {
     socket.emit('sign-out', []);
 
     $("#loggedAs").text("");
-    $("#mainInput").show();
     $("#friendsBar").toggleClass("disabled");
     $("#friendsReqBar").toggleClass("disabled");
     $("#searchReqBar").toggleClass("disabled");
@@ -164,16 +163,13 @@ $("#signOutBtn").on('click', function () {
 $('#formId').submit(function () {
     if (to != "") {
         if (actualChat.indexOf(to) < 0) { actualChat.push(to) };
-        socket.emit('chat message', [name, $('#sendMessageBtn').val(), to]);
+        socket.emit('chat message', [name, $('#messageField').val(), to]);
         // TODO cambiare id input
-        $('#messages').append($('<li>').text("@you >>> " + $('#sendMessageBtn').val()));
+        $('#messages').append($('<li>').text("@you >>> " + $('#messageField').val()));
     }
     $('#sendMessageBtn').val('');
     return false;
 });
-
-
-
 
 // La registrazione è avvenuta con successo,
 // abilitazione funzionalità di chat, friends, search user e friend requests.
@@ -314,10 +310,3 @@ socket.on('chat message', function (msg) {
 socket.on('friend-removed', function (from) {
 
 });
-
-//name = $("#connectBtn").val();
-
-
-// Richiedo le mie informazioni base.
-
-
