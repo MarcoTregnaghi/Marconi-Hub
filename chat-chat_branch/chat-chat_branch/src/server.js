@@ -139,7 +139,6 @@ io.on('connection', function (socket) {
   socket.on('registration-login', function (reqName) {  // LOGIN
     if (registeredClients[reqName[0]] == undefined) {
       console.log("error, user not exists")
-
       //io.sockets.connected[socket.id].emit("error", 111); // messaggio mirato (id)
 
     } else {
@@ -163,8 +162,6 @@ io.on('connection', function (socket) {
 
               fs.readFile(__dirname + '\\chat_files\\style.css', 'utf8', (err, dataPage3) => {
                 if (err) throw err;
-
-
 
                 ret.push(dataPage3)
                 io.sockets.connected[socket.id].emit('html-page', ret);
@@ -229,7 +226,6 @@ io.on('connection', function (socket) {
             if (clients[data[2]] != undefined) {
               io.sockets.connected[clients[data[2]]["id"]].emit('chat message', data);
             }
-
 
             // ************Salvataggio messaggio************
             sender = data[2];
