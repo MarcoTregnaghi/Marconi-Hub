@@ -25,14 +25,12 @@ socket.emit('data-on-login-req', name);
     $("#mainInput").hide();
     $("#friendsBar").toggleClass("disabled");
     $("#friendsReqBar").toggleClass("disabled");
+    $("#profileBar").toggleClass("disabled");
     $("#searchReqBar").toggleClass("disabled");
     $("#chatDiv").show();
     $("#messagesDiv").show();
     $("#mainSend").show();
     $("#mainChat").show();
-
-
-
 
 $("#remov").click(function () {
     $("#firststyle").remove();
